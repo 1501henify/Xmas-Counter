@@ -1,0 +1,72 @@
+/* Allgemeiner Stil für die Seite */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: #0d3b66; /* Dunkelblauer Hintergrund */
+  color: #fff;
+  text-align: center;
+  padding: 50px;
+  overflow: hidden;
+}
+
+/* Styling des Countdown-Containers */
+.countdown-container {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.6); /* Transparenter schwarzer Hintergrund */
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* Layout des Countdowns */
+#countdown {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* Styling für jede Zeiteinheit */
+.time-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.time-box span:first-child {
+  font-size: 3rem; /* Größe der Zahlen */
+  font-weight: bold;
+}
+
+.time-box span:last-child {
+  margin-top: 5px;
+  font-size: 1.2rem; /* Größe der Bezeichnungen (Tage, Stunden usw.) */
+}
+
+/* Schneefall-Effekt */
+@keyframes snow {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100vh); /* Schnee fällt nach unten */
+  }
+}
+
+.snowflake {
+  position: absolute;
+  top: -10px;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: snow 10s linear infinite; /* Endloser Schneefall */
+}
+
+.snowflake:nth-child(odd) {
+  animation-duration: 8s;
+}
