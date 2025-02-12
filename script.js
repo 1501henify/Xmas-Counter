@@ -1,5 +1,5 @@
 // Ziel-Datum für den Countdown (Weihnachten)
-const zielDatum = new Date('December 25, 2024 00:00:00').getTime();
+const zielDatum = new Date('December 25, 2025 00:00:00').getTime();
 
 // Funktion, um den Countdown zu aktualisieren
 const aktualisiereCountdown = () => {
