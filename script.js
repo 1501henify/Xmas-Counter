@@ -1,43 +1,58 @@
-// Ziel-Datum für den Countdown (Weihnachten)
-const zielDatum = new Date('December 25, 2025 00:00:00').getTime();
+/* ===== COUNTDOWN LOGIC ===== */
+function getNextChristmas() {
+  const now = new Date();
+  const year = now.getFullYear();
+  let christmas = new Date(year, 11, 25, 0, 0, 0);
 
-// Funktion, um den Countdown zu aktualisieren
-const aktualisiereCountdown = () => {
-  // Aktuelles Datum und Uhrzeit
-  const jetzt = new Date().getTime();
+  if (now > christmas) {
+    christmas = new Date(year + 1, 11, 25, 0, 0, 0);
+  }
 
-  // Differenz zwischen Ziel-Datum und aktueller Zeit
-  const zeitÜbrig = zielDatum - jetzt;
+  return christmas.getTime();
+}
 
-  // Berechnung der verbleibenden Tage, Stunden, Minuten und Sekunden
-  const tage = Math.floor(zeitÜbrig / (1000 * 60 * 60 * 24)); // Anzahl der Tage
-  const stunden = Math.floor(
-    (zeitÜbrig % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-  ); // Stunden
-  const minuten = Math.floor((zeitÜbrig % (1000 * 60 * 60)) / (1000 * 60)); // Minuten
-  const sekunden = Math.floor((zeitÜbrig % (1000 * 60)) / 1000); // Sekunden
+let targetTime = getNextChristmas();
 
-  // Update der HTML-Inhalte mit den berechneten Werten
-  document.getElementById('tage').textContent = tage < 10 ? `0${tage}` : tage; // 0 voranstellen, wenn < 10
-  document.getElementById('stunden').textContent =
-    stunden < 10 ? `0${stunden}` : stunden;
-  document.getElementById('minuten').textContent =
-    minuten < 10 ? `0${minuten}` : minuten;
-  document.getElementById('sekunden').textContent =
-    sekunden < 10 ? `0${sekunden}` : sekunden;
-};
+function updateCountdown() {
+  const now = Date.now();
+  const diff = targetTime - now;
 
-// Funktion wird alle 1000 Millisekunden (1 Sekunde) ausgeführt
-aktualisiereCountdown();
-setInterval(aktualisiereCountdown, 1000);
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-// Zusätzliche Schneefall-Animation für die festliche Stimmung
-for (let i = 0; i < 50; i++) {
-  const schneeflocke = document.createElement('div'); // Erstellt ein Div-Element
-  schneeflocke.className = 'snowflake'; // Klasse für Styling
-  schneeflocke.style.left = `${Math.random() * 100}vw`; // Zufällige Position auf der Breite
-  schneeflocke.style.width = `${Math.random() * 5 + 2}px`; // Zufällige Größe
-  schneeflocke.style.height = schneeflocke.style.width; // Gleiche Höhe wie Breite
-  schneeflocke.style.animationDelay = `${Math.random() * 10}s`; // Zufälliger Verzögerungsstart
-  document.body.appendChild(schneeflocke); // Fügt die Schneeflocke zum Dokument hinzu
+  document.getElementById("days").textContent = days
+    .toString()
+    .padStart(2, "0");
+  document.getElementById("hours").textContent = hours
+    .toString()
+    .padStart(2, "0");
+  document.getElementById("minutes").textContent = minutes
+    .toString()
+    .padStart(2, "0");
+  document.getElementById("seconds").textContent = seconds
+    .toString()
+    .padStart(2, "0");
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+/* ===== SNOW GENERATOR ===== */
+const snowCount = 60;
+
+for (let i = 0; i < snowCount; i++) {
+  const snow = document.createElement("div");
+  snow.className = "snowflake";
+
+  const size = Math.random() * 4 + 2;
+  snow.style.width = `${size}px`;
+  snow.style.height = `${size}px`;
+  snow.style.left = `${Math.random() * 100}vw`;
+  snow.style.animationDuration = `${Math.random() * 6 + 6}s`;
+  snow.style.animationDelay = `${Math.random() * 6}s`;
+  snow.style.opacity = Math.random() * 0.6 + 0.3;
+
+  document.body.appendChild(snow);
 }

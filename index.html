@@ -1,35 +1,36 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Countdown bis Weihnachten</title>
+    <title>Christmas Countdown</title>
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
-    <div class="countdown-container">
-      <h1>🎄 Countdown bis Weihnachten 🎄</h1>
-      <!-- Countdown-Bereich mit verschiedenen Zeiteinheiten -->
-      <div id="countdown">
+    <div class="counter-modal">
+      <h1>🎄 Christmas Countdown 🎄</h1>
+
+      <div class="countdown">
         <div class="time-box">
-          <span id="tage">00</span>
-          <span>Tage</span>
+          <div class="value" id="days">00</div>
+          <div class="label">Days</div>
         </div>
         <div class="time-box">
-          <span id="stunden">00</span>
-          <span>Stunden</span>
+          <div class="value" id="hours">00</div>
+          <div class="label">Hours</div>
         </div>
         <div class="time-box">
-          <span id="minuten">00</span>
-          <span>Minuten</span>
+          <div class="value" id="minutes">00</div>
+          <div class="label">Minutes</div>
         </div>
         <div class="time-box">
-          <span id="sekunden">00</span>
-          <span>Sekunden</span>
+          <div class="value" id="seconds">00</div>
+          <div class="label">Seconds</div>
         </div>
       </div>
     </div>
-    <!-- Verknüpfung zur JavaScript-Datei -->
+
     <script src="script.js"></script>
   </body>
 </html>
